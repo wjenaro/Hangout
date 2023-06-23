@@ -4,7 +4,7 @@
         {% for rooms in rooms %}
         <div>
             <h4>{{rooms.id}}
-            --- <a href="/room/{{rooms.id}}">      {{rooms.name}}</a>
+            --- <a href="{% url 'room' rooms.id %}">{{rooms.name}}</a>
         
         </h4>
 
