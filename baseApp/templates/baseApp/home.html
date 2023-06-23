@@ -1,13 +1,20 @@
 <h1>List</h1>
+<div style="float: right;">
+    <a href="{% url 'create-room' %}">Create Room</a>
+</div>
 <div>
     <div>
         {% for rooms in rooms %}
         <div>
+            <span>
+                @{{rooms.host.username}}
+            </span>
             <h4>{{rooms.id}}
             --- <a href="{% url 'room' rooms.id %}">{{rooms.name}}</a>
         
         </h4>
-
+        <small>{{rooms.topic.name}}</small>
+<hr>
         </div>
         {% endfor %}
     </div>
