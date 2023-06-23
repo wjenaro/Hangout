@@ -6,6 +6,7 @@
     <div>
         {% for rooms in rooms %}
         <div>
+            <a href="{% url 'update-room' rooms.id %}"> Edit</a>
             <span>
                 @{{rooms.host.username}}
             </span>
@@ -14,7 +15,7 @@
         
         </h4>
         <small>{{rooms.topic.name}}</small>
-<hr>
+            <hr>
         </div>
         {% endfor %}
     </div>
