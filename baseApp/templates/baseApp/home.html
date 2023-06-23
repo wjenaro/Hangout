@@ -1,0 +1,14 @@
+<h1>List</h1>
+<div>
+    <div>
+        {% for rooms in rooms %}
+        <div>
+            <h4>{{rooms.id}}
+            --- <a href="/room/{{rooms.id}}">      {{rooms.name}}</a>
+        
+        </h4>
+
+        </div>
+        {% endfor %}
+    </div>
+</div>
