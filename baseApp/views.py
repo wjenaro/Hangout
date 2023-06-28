@@ -10,12 +10,13 @@ from .forms import RoomForm
 #]
 # Create your views here.
 def home(request):
+    q=request.GET.get('q') if request.GET.get('q')!=None else ''
     '''creating topic object .. get to query all columns from the Topic table
     '''
     topics=Topic.objects.all()
     '''Create model manager
     '''
-    rooms=Room.objects.all()
+    rooms=Room.objects.filter(topic__name__icontains=q)
     ''''''
     context ={'rooms':rooms, 'topics': topics}
     '''

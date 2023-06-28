@@ -1,5 +1,8 @@
 {% extends "base.html" %}
+
 {% block title %}Home{% endblock %}
+
+
 
 {% block content %}     
 
@@ -8,8 +11,12 @@
     <h6>Explore</h6>
     <hr>
   <!--List topics -->
+  <div>
+    <a href="{% url 'home' %}">All</a>
+   </div>
 {% for topic in topics %}
    <!--and wrapper-->
+   
    <div>
     <a href="{% url 'home' %}?q={{topic.name}}">{{ topic.name }}</a>
    </div>

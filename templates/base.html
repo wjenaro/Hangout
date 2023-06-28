@@ -22,7 +22,11 @@
 
 <body>
     <nav style="height: 60px; background-color:darkgoldenrod;"><a>Logo</a><div style="float: right;">
-        <a href="{% url 'create-room' %}">Create Room</a>
+        <form method="GET" action="{% url 'home' %}">
+          <input type="text" name="q" placeholder="Search Rooms ...." />
+
+        </form>
+      <a href="{% url 'create-room' %}">Create Room</a>
         </div></nav>
         <hr>
         {% block content %}
