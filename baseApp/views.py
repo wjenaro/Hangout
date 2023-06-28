@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
-from .models import Room, Topic 
+from django.contrib import messages
+from .models import Room, Topic, User
 from .forms import RoomForm
+from django.contrib.auth import authenticate, login, logout
 
 #rooms= [
   #  {'id':1, 'name': "let learn python"},
@@ -9,6 +11,25 @@ from .forms import RoomForm
     #{'id':4, 'name': "let learn HTML"},
 #]
 # Create your views here.
+def loginPage(request):
+    if request.method=="POST":
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        try:
+            user=User.objects.get(username=username)
+        except:
+            messages.error(request, "User does not exit")
+        user=authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, "username does not exist")
+
+    context={}
+    return render(request, 'baseApp/login_register.html', context)
+
+
 def home(request):
     q=request.GET.get('q') if request.GET.get('q')!=None else ''
     '''creating topic object .. get to query all columns from the Topic table
@@ -67,3 +88,4 @@ def deleteRoom(request,pk):
         room.delete()
         return redirect('home')
     return render(request, 'baseApp/delete.html', {'obj': room})
+
