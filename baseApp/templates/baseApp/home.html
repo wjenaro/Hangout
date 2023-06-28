@@ -6,7 +6,15 @@
 <div class="grid-container">
   <div class="grid-item">
     <h6>Explore</h6>
-    <hr></div>
+    <hr>
+  <!--List topics -->
+{% for topic in topics %}
+   <!--and wrapper-->
+   <div>
+    <a href="{% url 'home' %}?q={{topic.name}}">{{ topic.name }}</a>
+   </div>
+{% endfor %}  
+  </div>
   <div class="grid-item">
 
 
