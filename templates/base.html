@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}  {% endblock %}</title>
+
+    <!--styling here -->
+    <style>
+        .grid-container {
+          display: grid;
+          grid-template-columns: 20% 60% 20%;
+            padding: 1px;
+        }
+        .grid-item {
+          
+          padding: 2px;
+        
+        }
+        </style>
+</head>
+
+<body>
+    <nav style="height: 60px; background-color:darkgoldenrod;"><a>Logo</a><div style="float: right;">
+        <a href="{% url 'create-room' %}">Create Room</a>
+        </div></nav>
+        <hr>
+        {% block content %}
+        {% endblock %}
+
+</body>
+</html>

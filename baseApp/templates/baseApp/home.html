@@ -1,25 +1,7 @@
-<!DOCTYPE html>
-<html>
-<head>
-<style>
-.grid-container {
-  display: grid;
-  grid-template-columns: 20% 60% 20%;
-    padding: 1px;
-}
-.grid-item {
-  
-  padding: 2px;
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
 
-}
-</style>
-</head>
-<body>
-    <nav style="height: 60px; background-color:darkgoldenrod;"><a>Logo</a><div style="float: right;">
-        <a href="{% url 'create-room' %}">Create Room</a>
-        </div></nav>
-        <hr>
-        
+{% block content %}     
 
 <div class="grid-container">
   <div class="grid-item">
@@ -54,7 +36,5 @@
 
 </div>
 
-</body>
-</html>
-
+{% endblock %}
 
