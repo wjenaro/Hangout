@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required #decorator 
 from .models import Room, Topic, User
 from .forms import RoomForm
@@ -13,6 +14,7 @@ from django.contrib.auth import authenticate, login, logout
 #]
 # Create your views here.
 def loginPage(request):
+    page="login"
     if request.method=="POST":
         username=request.POST.get('username')
         password=request.POST.get('password')
@@ -27,7 +29,7 @@ def loginPage(request):
         else:
             messages.error(request, "username does not exist")
 
-    context={}
+    context={'page':page}
     return render(request, 'baseApp/login_register.html', context)
     '''
     logout method
@@ -35,6 +37,12 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('home')
+'''
+register 
+'''
+def registerUser(request):
+    page='register'
+    return render(request, 'baseApp/login_register.html')
 
 def home(request):
     q=request.GET.get('q') if request.GET.get('q')!=None else ''
@@ -79,6 +87,12 @@ updating
 def updateRoom(request, pk):
     room=Room.objects.get(id=pk)
     form=RoomForm(instance=room)
+    '''
+    Ensure only user can update'''
+    if request.user!=room.user:
+        return HttpResponse("You cannot update since you are not login")
+
+
     if request.method=="POST":
         form=RoomForm(request.POST, instance=room)
         if form.is_valid():
