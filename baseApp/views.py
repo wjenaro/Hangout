@@ -29,7 +29,7 @@ def loginPage(request):
         else:
             messages.error(request, "username does not exist")
 
-    context={'page':page}
+    context={'pag':page}
     return render(request, 'baseApp/login_register.html', context)
     '''
     logout method
@@ -40,8 +40,8 @@ def logoutUser(request):
 '''
 register 
 '''
-def registerUser(request):
-    page='register'
+def registerPage(request):
+    #page='register'
     return render(request, 'baseApp/login_register.html')
 
 def home(request):

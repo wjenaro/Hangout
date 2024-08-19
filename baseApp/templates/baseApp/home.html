@@ -2,54 +2,46 @@
 
 {% block title %}Home{% endblock %}
 
+{% block content %}
 
-
-{% block content %}     
-
-<div class="grid-container">
-  <div class="grid-item">
-    <h6>Explore</h6>
-    <hr>
-  <!--List topics -->
-  <div>
-    <a href="{% url 'home' %}">All</a>
-   </div>
-{% for topic in topics %}
-   <!--and wrapper-->
-   
-   <div>
-    <a href="{% url 'home' %}?q={{topic.name}}">{{ topic.name }}</a>
-   </div>
-{% endfor %}  
-  </div>
-  <div class="grid-item">
-
-
-<div>
+<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px;">
+  <div style="background: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px;">
+    <h6 style="margin: 0 0 10px; color: #555;">Explore</h6>
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+    <!-- List topics -->
     <div>
-    {% for rooms in rooms %}
-    <div>
-    <a href="{% url 'update-room' rooms.id %}"> Edit</a>
-    <a href="{% url 'delete-room' rooms.id %}"> Delete</a>
-    <span>
-    @{{rooms.host.username}}
-    </span>
-    <h4>{{rooms.id}}
-    --- <a href="{% url 'room' rooms.id %}">{{rooms.name}}</a>
-    </h4>
-    <small>{{rooms.topic.name}}</small>
-    <hr>
+      <a href="{% url 'home' %}" style="text-decoration: none; color: #007BFF;">All</a>
+    </div>
+    {% for topic in topics %}
+    <!-- and wrapper -->
+    <div style="margin-bottom: 10px;">
+      <a href="{% url 'home' %}?q={{topic.name}}" style="text-decoration: none; color: #007BFF;">{{ topic.name }}</a>
     </div>
     {% endfor %}
-    </div>
+  </div>
+
+  <div style="background: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px;">
+    <div>
+      {% for rooms in rooms %}
+      <div style="margin-bottom: 20px;">
+        <a href="{% url 'update-room' rooms.id %}" style="text-decoration: none; color: #007BFF;">Edit</a>
+        <a href="{% url 'delete-room' rooms.id %}" style="text-decoration: none; color: #007BFF; margin-left: 10px;">Delete</a>
+        <span style="display: block; margin-bottom: 10px; color: #555;">
+          @{{rooms.host.username}}
+        </span>
+        <h4 style="margin: 0 0 10px; color: #333;">{{rooms.id}} --- <a href="{% url 'room' rooms.id %}" style="text-decoration: none; color: #007BFF;">{{rooms.name}}</a></h4>
+        <small style="color: #888;">{{rooms.topic.name}}</small>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
+      </div>
+      {% endfor %}
     </div>
   </div>
-  <div class="grid-item">
-    <h4>Trends</h4>
-    <hr>
+
+  <div style="background: #fff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); padding: 20px;">
+    <h4 style="margin: 0 0 10px; color: #333;">Trends</h4>
+    <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0;">
   </div>  
 
 </div>
 
 {% endblock %}
-
